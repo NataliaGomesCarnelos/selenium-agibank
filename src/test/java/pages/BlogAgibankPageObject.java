@@ -44,16 +44,21 @@ public class BlogAgibankPageObject {
     }
 
     public void sendTextInputLupa(String word) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(searchInput)).sendKeys(word + Keys.ENTER);
+        var input = wait.until(ExpectedConditions.visibilityOfElementLocated(searchInput));
+        input.clear();
+        input.sendKeys(word);
+        wait.until(ExpectedConditions.elementToBeClickable(searchInput));
+        input.sendKeys(Keys.ENTER);
     }
 
     public String getTextResultFirst() {
+        wait.until(ExpectedConditions.urlContains("?s="));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(firstResult)).getText();
     }
 
     public boolean noResultsFound() {
+    	wait.until(ExpectedConditions.urlContains("?s="));
         String text = wait.until(ExpectedConditions.visibilityOfElementLocated(noResults)).getText();
-
         return text.contains("Lamentamos");
     }
 }
