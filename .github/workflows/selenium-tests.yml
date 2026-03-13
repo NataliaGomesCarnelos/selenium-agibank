@@ -31,15 +31,15 @@ jobs:
 
       - name: Run Selenium Tests
         run: ./gradlew test
+        
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: build/screenshots
 
       - name: Upload Test Report
         uses: actions/upload-artifact@v4
         with:
           name: selenium-test-report
           path: build/reports/tests/test
-      
-      - name: Upload screenshots
-        uses: actions/upload-artifact@v4
-        with:
-          name: screenshots
-          path: build/screenshots
