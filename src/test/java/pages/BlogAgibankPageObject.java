@@ -16,9 +16,9 @@ public class BlogAgibankPageObject {
 
     private By searchIcon = By.cssSelector("button[aria-label='Search']");
     private By searchInput = By.cssSelector("input.search-field");
-    private By firstResult = By.cssSelector("article h2 a");
-    private By noResults = By.cssSelector("section.no-results");
-
+    private By firstResult = By.cssSelector("h2.entry-title a");
+    private By noResults = By.cssSelector(".no-results p");
+    
     public BlogAgibankPageObject(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
