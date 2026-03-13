@@ -15,7 +15,7 @@ public class BlogAgibankPageObject {
 
 	private final String URL = "https://blogdoagi.com.br/";
 
-	private By searchIconLupa = By.cssSelector("a.slide-search.astra-search-icon");
+	private By searchIconLupa = By.xpath("//a[contains(@class,'astra-search-icon')]");
 	private By searchInputLupa = By.cssSelector("input.search-field"); 
 	private By searchResultFirst = By.id("post-20420");
 	private By noResultsMessage = By.xpath("//main[@id='main']/section[@class='no-results not-found']/div[@class='page-content']/p");
@@ -25,9 +25,17 @@ public class BlogAgibankPageObject {
 	    }
 
 	public void open() {
-		driver.get(URL);
-		
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+	    driver.get(URL);
+
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+	    wait.until(driver ->
+	            ((org.openqa.selenium.JavascriptExecutor) driver)
+	                    .executeScript("return document.readyState")
+	                    .equals("complete")
+	    );
+
 	    wait.until(ExpectedConditions.visibilityOfElementLocated(searchIconLupa));
 	}
 
@@ -58,7 +66,7 @@ public class BlogAgibankPageObject {
 	
 	public void waitInputLupa() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        wait.until(ExpectedConditions.elementToBeClickable(searchInputLupa));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(searchInputLupa));
     }
 	
 	public void waitVisibilityResult() {
