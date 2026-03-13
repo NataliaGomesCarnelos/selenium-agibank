@@ -8,27 +8,25 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class BlogAgibankTest extends BaseTest {
 
-    @Test
-    public void testSearchExistingArticle() {
+	@Test
+	public void testSearchExistingArticle() {
 
-        BlogAgibankPageObject blogPage = new BlogAgibankPageObject(driver);
+	    BlogAgibankPageObject blogPage = new BlogAgibankPageObject(driver);
 
-        blogPage.open();
-        blogPage.clickLupa();
-        blogPage.sendTextInputLupa("crédito consignado é mais barato");
+	    blogPage.open();
+	    blogPage.search("crédito consignado");
 
-        assertTrue(blogPage.getTextResultFirst().contains("crédito consignado"),"Resultado esperado não encontrado");
-    }
+	    assertTrue(blogPage.getFirstResultText().toLowerCase().contains("consignado"));
+	}
 
-    @Test
-    public void testSearchNonExistingArticle() {
+	@Test
+	public void testSearchNonExistingArticle() {
 
-        BlogAgibankPageObject blogPage = new BlogAgibankPageObject(driver);
+	    BlogAgibankPageObject blogPage = new BlogAgibankPageObject(driver);
 
-        blogPage.open();
-        blogPage.clickLupa();
-        blogPage.sendTextInputLupa("xyz123");
+	    blogPage.open();
+	    blogPage.search("xyz123");
 
-        assertTrue(blogPage.noResultsFound(),"Mensagem esperada não encontrada");
-    }
+	    assertTrue(blogPage.isNoResultsDisplayed());
+	}
 }
