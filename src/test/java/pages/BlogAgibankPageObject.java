@@ -15,7 +15,7 @@ public class BlogAgibankPageObject {
     private final String URL = "https://blogdoagi.com.br/";
 
     private By searchIcon = By.cssSelector("button[aria-label='Search']");
-    private By searchInput = By.cssSelector("input.search-field");
+    private By searchInput = By.cssSelector("form.search-form input.search-field");
     private By firstResult = By.cssSelector("h2.entry-title a");
     private By noResults = By.cssSelector(".no-results p");
     
@@ -38,7 +38,9 @@ public class BlogAgibankPageObject {
     }
 
     public void clickLupa() {
-        wait.until(ExpectedConditions.elementToBeClickable(searchIcon)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(searchIcon));
+        driver.findElement(searchIcon).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(searchInput));
     }
 
     public void sendTextInputLupa(String word) {
