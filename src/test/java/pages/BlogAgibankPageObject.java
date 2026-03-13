@@ -11,72 +11,57 @@ import java.time.Duration;
 
 public class BlogAgibankPageObject {
 
-	private WebDriver driver;
+    private WebDriver driver;
+    private final String URL = "https://blogdoagi.com.br/";
+    private By searchIconLupa = By.cssSelector("a.ast-search-icon");
+    private By searchInputLupa = By.cssSelector("input.search-field");
+    private By searchResultFirst = By.cssSelector("article h2 a");
+    private By noResultsMessage = By.cssSelector("section.no-results p");
 
-	private final String URL = "https://blogdoagi.com.br/";
-
-	private By searchIconLupa = By.xpath("//a[contains(@class,'astra-search-icon')]");
-	private By searchInputLupa = By.cssSelector("input.search-field"); 
-	private By searchResultFirst = By.id("post-20420");
-	private By noResultsMessage = By.xpath("//main[@id='main']/section[@class='no-results not-found']/div[@class='page-content']/p");
-
-	public BlogAgibankPageObject(WebDriver driver) {
-	        this.driver = driver;
-	    }
-
-	public void open() {
-
-	    driver.get(URL);
-
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-
-	    wait.until(driver ->
-	            ((org.openqa.selenium.JavascriptExecutor) driver)
-	                    .executeScript("return document.readyState")
-	                    .equals("complete")
-	    );
-
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(searchIconLupa));
-	}
-
-	public void clickLupa() {
-		driver.findElement(searchIconLupa).click();
-	}
-	
-	public void sendTextInputLupa(String word) {
-		WebElement input = driver.findElement(searchInputLupa);
-		input.sendKeys(word);
-		input.sendKeys(Keys.ENTER);
-	}
-
-	public String getTextResultFirst() {
-		return driver.findElement(searchResultFirst).getText();
-	}
-
-	public boolean noResultsFound() {
-		WebElement messageElement = driver.findElement(noResultsMessage);
-        String expectedText = "Lamentamos, mas nada foi encontrado para sua pesquisa, tente novamente com outras palavras.";
-        return messageElement.getText().trim().equals(expectedText);
-        }
-	
-	public void waitClickSearchIconLupa() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        wait.until(ExpectedConditions.elementToBeClickable(searchIconLupa));
+    public BlogAgibankPageObject(WebDriver driver) {
+        this.driver = driver;
     }
-	
-	public void waitInputLupa() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(searchInputLupa));
+
+    public void open() {
+        driver.get(URL);
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+        wait.until(driver ->
+                ((org.openqa.selenium.JavascriptExecutor) driver)
+                        .executeScript("return document.readyState")
+                        .equals("complete")
+        );
+
+        wait.until(ExpectedConditions.visibilityOfElementLocated(searchIconLupa));
     }
-	
-	public void waitVisibilityResult() {
-	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-	    wait.until(ExpectedConditions.visibilityOfElementLocated(searchResultFirst));
-	}
-	
-	public void waitNoResultFound() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-	    WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(noResultsMessage)
-	    );
-	}
+
+    public void clickLupa() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebElement lupa = wait.until(ExpectedConditions.elementToBeClickable(searchIconLupa));
+        lupa.click();
+    }
+
+    public void sendTextInputLupa(String word) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+        WebElement input = wait.until(ExpectedConditions.visibilityOfElementLocated(searchInputLupa));
+        input.sendKeys(word);
+        input.sendKeys(Keys.ENTER);
+    }
+
+    public String getTextResultFirst() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebElement result = wait.until(ExpectedConditions.visibilityOfElementLocated(searchResultFirst));
+
+        return result.getText();
+    }
+
+    public boolean noResultsFound() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(noResultsMessage));
+        String expectedText = "Lamentamos, mas nada foi encontrado";
+
+        return messageElement.getText().contains(expectedText);
+    }
 }
