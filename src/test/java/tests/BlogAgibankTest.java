@@ -31,7 +31,7 @@ public class BlogAgibankTest extends BaseTest {
 		blogPage.clickLupa();
 		blogPage.waitInputLupa();
 		blogPage.sendTextInputLupa("xyz123");
-
+		blogPage.waitNoResultFound();
 
 		assertTrue(blogPage.noResultsFound(), "Mensagem esperada não encontrada");
 	}

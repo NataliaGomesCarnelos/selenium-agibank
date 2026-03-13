@@ -26,6 +26,9 @@ public class BlogAgibankPageObject {
 
 	public void open() {
 		driver.get(URL);
+		
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(searchIconLupa));
 	}
 
 	public void clickLupa() {
@@ -59,7 +62,13 @@ public class BlogAgibankPageObject {
     }
 	
 	public void waitVisibilityResult() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        wait.until(ExpectedConditions.elementToBeClickable(searchResultFirst));
-        }
+	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+	    wait.until(ExpectedConditions.visibilityOfElementLocated(searchResultFirst));
+	}
+	
+	public void waitNoResultFound() {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+	    WebElement messageElement = wait.until(ExpectedConditions.visibilityOfElementLocated(noResultsMessage)
+	    );
+	}
 }
