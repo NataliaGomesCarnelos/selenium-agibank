@@ -45,16 +45,14 @@ public class DriverFactory {
 
                     if (headless) {
                     	options.addArguments("--headless=new");
-                    	options.addArguments("--window-size=1920,1080");
+                    	options.addArguments("--window-size=2560,1440"); // maior
                     	options.addArguments("--start-maximized");
                     	options.addArguments("--disable-dev-shm-usage");
                     	options.addArguments("--no-sandbox");
-
                     }
 
                     driver = new ChromeDriver(options);
-                    driver.manage().window().setSize(new Dimension(1920,1080));
-            }
+                    driver.manage().window().setSize(new Dimension(2560,1440));            }
 
             driver.manage().window().maximize();
         }
