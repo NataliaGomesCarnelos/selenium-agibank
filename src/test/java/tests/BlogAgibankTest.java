@@ -2,7 +2,7 @@ package tests;
 
 import base.BaseTest;
 import org.junit.jupiter.api.Test;
-import pages.BlogAgibankPageObeject;
+import pages.BlogAgibankPageObject;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -10,7 +10,7 @@ public class BlogAgibankTest extends BaseTest {
 
 	@Test
 	public void testSearchExistingArticle() {
-		BlogAgibankPageObeject blogPage = new BlogAgibankPageObeject(driver);
+		BlogAgibankPageObject blogPage = new BlogAgibankPageObject(driver);
 		
 		blogPage.open();
 		blogPage.waitClickSearchIconLupa();
@@ -24,7 +24,7 @@ public class BlogAgibankTest extends BaseTest {
 
 	@Test
 	public void testSearchNonExistingArticle() {
-		BlogAgibankPageObeject blogPage = new BlogAgibankPageObeject(driver);
+		BlogAgibankPageObject blogPage = new BlogAgibankPageObject(driver);
 		
 		blogPage.open();
 		blogPage.waitClickSearchIconLupa();

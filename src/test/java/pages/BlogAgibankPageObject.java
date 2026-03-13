@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class BlogAgibankPageObeject {
+public class BlogAgibankPageObject {
 
 	private WebDriver driver;
 
@@ -20,7 +20,7 @@ public class BlogAgibankPageObeject {
 	private By searchResultFirst = By.id("post-20420");
 	private By noResultsMessage = By.xpath("//main[@id='main']/section[@class='no-results not-found']/div[@class='page-content']/p");
 
-	public BlogAgibankPageObeject(WebDriver driver) {
+	public BlogAgibankPageObject(WebDriver driver) {
 	        this.driver = driver;
 	    }
 
@@ -49,17 +49,17 @@ public class BlogAgibankPageObeject {
         }
 	
 	public void waitClickSearchIconLupa() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.elementToBeClickable(searchIconLupa));
     }
 	
 	public void waitInputLupa() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.elementToBeClickable(searchInputLupa));
     }
 	
 	public void waitVisibilityResult() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.elementToBeClickable(searchResultFirst));
         }
 }
