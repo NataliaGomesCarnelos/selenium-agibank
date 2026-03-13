@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tests.GoogleTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-03-12T02:59:50.898Z" hostname="ROBERTA" time="15.847">
+  <properties/>
+  <testcase name="searchSelenium()" classname="tests.GoogleTest" time="15.799"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[[Test worker] INFO io.github.bonigarcia.wdm.WebDriverManager - Using chromedriver 145.0.7632.117 (resolved driver for Chrome 145)
+[Test worker] INFO io.github.bonigarcia.wdm.online.Downloader - Downloading https://storage.googleapis.com/chrome-for-testing-public/145.0.7632.117/win64/chromedriver-win64.zip
+[Test worker] INFO io.github.bonigarcia.wdm.online.Downloader - Extracting driver from compressed file chromedriver-win64.zip
+[Test worker] INFO io.github.bonigarcia.wdm.WebDriverManager - Exporting webdriver.chrome.driver as C:\Users\roberta\.cache\selenium\chromedriver\win64\145.0.7632.117\chromedriver.exe
+mar. 12, 2026 12:00:01 AM org.openqa.selenium.devtools.CdpVersionFinder findNearestMatch
+ADVERTÊNCIA: Unable to find CDP implementation matching 145
+mar. 12, 2026 12:00:01 AM org.openqa.selenium.chromium.ChromiumDriver lambda$new$5
+ADVERTÊNCIA: Unable to find version of CDP to use for 145.0.7632.160. You may need to include a dependency on a specific version of the CDP using something similar to `org.seleniumhq.selenium:selenium-devtools-v86:4.20.0` where the version ("v86") matches the version of the chromium-based browser you're using and the version number of the artifact is the same as Selenium's.
+]]></system-err>
+</testsuite>
