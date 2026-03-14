@@ -11,7 +11,7 @@ Professional Selenium automation framework using:
 - Page Object Model
 
 ## Project Structure
-
+```
 src
  ├── main
  │   └── java
@@ -31,6 +31,7 @@ src
          │   └── GooglePage.java
          └── tests
              └── GoogleTest.java
+```
 
 ## Main Concepts
 
@@ -82,12 +83,5 @@ Supported browsers:
 
 Parallel test execution is enabled via JUnit 5 configuration in `build.gradle`.
 
-## Future Improvements
-
-Possible extensions:
-
-- Allure reporting
-- CI/CD integration
-- Docker execution
-- Test data management
-- Environment profiles
+## Autor
+Natália Gomes Carnelós
