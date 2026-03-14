@@ -5,6 +5,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
 
 public class BlogAgibankPageObject {
@@ -14,51 +15,32 @@ public class BlogAgibankPageObject {
 
     private final String URL = "https://blogdoagi.com.br/";
 
-    private By searchIcon = By.cssSelector("button[aria-label='Search']");
-    private By searchInput = By.cssSelector("form.search-form input.search-field");
+    private By searchIcon = By.cssSelector(".ast-search-icon");
+    private By searchInput = By.cssSelector("input.search-field");
     private By firstResult = By.cssSelector("h2.entry-title a");
-    private By noResults = By.cssSelector(".no-results p");
-    
+    private By noResults = By.xpath("//section[contains(@class,'no-results')]//p");
+
     public BlogAgibankPageObject(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
     public void open() {
-
         driver.get(URL);
-
-        wait.until(driver ->
-                ((org.openqa.selenium.JavascriptExecutor) driver)
-                        .executeScript("return document.readyState")
-                        .equals("complete")
-        );
-
         wait.until(ExpectedConditions.visibilityOfElementLocated(searchIcon));
     }
 
-    public void clickLupa() {
-        wait.until(ExpectedConditions.elementToBeClickable(searchIcon));
-        driver.findElement(searchIcon).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(searchInput));
-    }
-
-    public void sendTextInputLupa(String word) {
-        var input = wait.until(ExpectedConditions.visibilityOfElementLocated(searchInput));
-        input.clear();
-        input.sendKeys(word);
-        wait.until(ExpectedConditions.elementToBeClickable(searchInput));
-        input.sendKeys(Keys.ENTER);
-    }
-
-    public String getTextResultFirst() {
+    public void search(String term) {
+        wait.until(ExpectedConditions.elementToBeClickable(searchIcon)).click();
+        wait.until(ExpectedConditions.visibilityOfElementLocated(searchInput)).sendKeys(term + Keys.ENTER);
         wait.until(ExpectedConditions.urlContains("?s="));
+    }
+
+    public String getFirstResultText() {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(firstResult)).getText();
     }
 
-    public boolean noResultsFound() {
-    	wait.until(ExpectedConditions.urlContains("?s="));
-        String text = wait.until(ExpectedConditions.visibilityOfElementLocated(noResults)).getText();
-        return text.contains("Lamentamos");
+    public boolean isNoResultsDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(noResults)).getText().toLowerCase().contains("lamentamos");
     }
 }
