@@ -2,8 +2,8 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.time.Duration;
 
@@ -14,8 +14,8 @@ public class BlogAgibankPageObject {
 
     private final String URL = "https://blogdoagi.com.br";
 
-    private By firstResult = By.cssSelector("h2.entry-title a");
-    private By noResults = By.xpath("//section[contains(@class,'no-results')]//p");
+    private By firstResult = By.cssSelector("article h2 a");
+    private By noResults = By.xpath("//*[contains(text(),'nada foi encontrado')]");
 
     public BlogAgibankPageObject(WebDriver driver) {
         this.driver = driver;
@@ -33,13 +33,10 @@ public class BlogAgibankPageObject {
     }
 
     public String getFirstResultText() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(firstResult)).getText();
+        return driver.findElement(firstResult).getText();
     }
 
     public boolean isNoResultsDisplayed() {
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(noResults))
-                .getText()
-                .toLowerCase()
-                .contains("lamentamos");
+        return driver.findElement(noResults).isDisplayed();
     }
 }
