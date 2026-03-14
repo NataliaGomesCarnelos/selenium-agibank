@@ -12,7 +12,7 @@ public class BlogAgibankTest extends BaseTest {
 	public void testSearchExistingArticle() {
 	    BlogAgibankPageObject blogPage = new BlogAgibankPageObject(driver);
 	    blogPage.search("crédito consignado");
-	    assertTrue(blogPage.pageContains("consignado"));
+	    assertTrue(blogPage.pageContains("crédito consignado"));
 	}
 
 	@Test
