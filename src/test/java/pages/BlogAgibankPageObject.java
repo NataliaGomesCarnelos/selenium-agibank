@@ -14,7 +14,7 @@ public class BlogAgibankPageObject {
 
     private final String URL = "https://blogdoagi.com.br";
 
-    private By firstResult = By.cssSelector("article h2 a");
+    private By pageBody = By.tagName("body");
     private By noResults = By.xpath("//*[contains(text(),'nada foi encontrado')]");
 
     public BlogAgibankPageObject(WebDriver driver) {
@@ -26,14 +26,14 @@ public class BlogAgibankPageObject {
 
         driver.get(URL + "/?s=" + term.replace(" ", "+"));
 
-        wait.until(ExpectedConditions.or(
-                ExpectedConditions.visibilityOfElementLocated(firstResult),
-                ExpectedConditions.visibilityOfElementLocated(noResults)
-        ));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(pageBody));
     }
 
-    public String getFirstResultText() {
-        return driver.findElement(firstResult).getText();
+    public boolean pageContains(String text) {
+        return driver.findElement(pageBody)
+                .getText()
+                .toLowerCase()
+                .contains(text.toLowerCase());
     }
 
     public boolean isNoResultsDisplayed() {

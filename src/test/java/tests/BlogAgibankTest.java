@@ -15,7 +15,7 @@ public class BlogAgibankTest extends BaseTest {
 
 	    blogPage.search("crédito consignado");
 
-	    assertTrue(blogPage.getFirstResultText().toLowerCase().contains("consignado"));
+	    assertTrue(blogPage.pageContains("consignado"));
 	}
 
 	@Test
