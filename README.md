@@ -28,9 +28,9 @@ src
          ├── base
          │   └── BaseTest.java
          ├── pages
-         │   └── GooglePage.java
+         │   └── BlogAgibankPageObject.java
          └── tests
-             └── GoogleTest.java
+             └── BlogAgibankTest.java
 ```
 
 ## Main Concepts
