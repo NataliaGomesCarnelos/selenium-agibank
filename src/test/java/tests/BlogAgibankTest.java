@@ -10,21 +10,15 @@ public class BlogAgibankTest extends BaseTest {
 
 	@Test
 	public void testSearchExistingArticle() {
-
 	    BlogAgibankPageObject blogPage = new BlogAgibankPageObject(driver);
-
 	    blogPage.search("crédito consignado");
-
 	    assertTrue(blogPage.pageContains("consignado"));
 	}
 
 	@Test
 	public void testSearchNonExistingArticle() {
-
 	    BlogAgibankPageObject blogPage = new BlogAgibankPageObject(driver);
-
 	    blogPage.search("xyz123");
-
 	    assertTrue(blogPage.isNoResultsDisplayed());
 	}
 }

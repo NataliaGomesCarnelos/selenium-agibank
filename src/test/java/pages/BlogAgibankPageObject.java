@@ -2,8 +2,10 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.Duration;
 
@@ -23,20 +25,16 @@ public class BlogAgibankPageObject {
     }
 
     public void search(String term) {
-
         driver.get(URL + "/?s=" + term.replace(" ", "+"));
-
         wait.until(ExpectedConditions.visibilityOfElementLocated(pageBody));
     }
 
     public boolean pageContains(String text) {
-        return driver.findElement(pageBody)
-                .getText()
-                .toLowerCase()
-                .contains(text.toLowerCase());
+        return driver.findElement(pageBody).getText().toLowerCase().contains(text.toLowerCase());
     }
 
     public boolean isNoResultsDisplayed() {
-        return driver.findElement(noResults).isDisplayed();
+    	assertTrue(driver.findElement(noResults).getText().equals("Lamentamos, mas nada foi encontrado para sua pesquisa, tente novamente com outras palavras."));
+    	return driver.findElement(noResults).isDisplayed();
     }
 }
