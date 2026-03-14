@@ -13,7 +13,6 @@ public class BlogAgibankTest extends BaseTest {
 
 	    BlogAgibankPageObject blogPage = new BlogAgibankPageObject(driver);
 
-	    blogPage.open();
 	    blogPage.search("crédito consignado");
 
 	    assertTrue(blogPage.getFirstResultText().toLowerCase().contains("consignado"));
@@ -24,7 +23,6 @@ public class BlogAgibankTest extends BaseTest {
 
 	    BlogAgibankPageObject blogPage = new BlogAgibankPageObject(driver);
 
-	    blogPage.open();
 	    blogPage.search("xyz123");
 
 	    assertTrue(blogPage.isNoResultsDisplayed());
