@@ -1,16 +1,16 @@
-
 # Selenium Automation Framework
 
-Professional Selenium automation framework using:
+Framework profissional de automação com **Selenium** utilizando:
 
-- Java 17
-- Selenium WebDriver
-- Gradle
-- JUnit 5
-- WebDriverManager
-- Page Object Model
+- Java 17  
+- Selenium WebDriver  
+- Gradle  
+- JUnit 5  
+- WebDriverManager  
+- Page Object Model  
 
-## Project Structure
+## Estrutura do Projeto
+
 ```
 src
  ├── main
@@ -33,55 +33,58 @@ src
              └── BlogAgibankTest.java
 ```
 
-## Main Concepts
+## Principais Conceitos
 
 ### DriverFactory
-Responsible for creating WebDriver instances.
+Responsável por criar instâncias do **WebDriver**.
 
 ### BaseTest
-Base class for all tests.
+Classe base para todos os testes.
 
 ### Page Object Model
-Pages encapsulate UI interactions.
+As páginas encapsulam as interações com a interface (UI interactions).
 
 ### ConfigReader
-Loads configuration such as browser type.
+Carrega configurações do projeto, como o tipo de **browser** utilizado.
 
-## Running Tests
+## Executando os Testes
 
-Run tests using Gradle:
+Execute os testes utilizando **Gradle**:
 
 ```
 ./gradlew test
 ```
 
-or
+ou
 
 ```
 gradle test
 ```
 
-## Browser Configuration
+## Configuração do Browser
 
-Edit:
+Edite o arquivo:
 
+```
 src/test/resources/config.properties
+```
 
-Example:
+Exemplo:
 
 ```
 browser=chrome
 ```
 
-Supported browsers:
+Browsers suportados:
 
-- chrome
-- firefox
-- edge
+- chrome  
+- firefox  
+- edge  
 
-## Parallel Execution
+## Execução Paralela
 
-Parallel test execution is enabled via JUnit 5 configuration in `build.gradle`.
+A execução paralela de testes está habilitada via configuração do **JUnit 5** no arquivo `build.gradle`.
 
 ## Autor
+
 Natália Gomes Carnelós
